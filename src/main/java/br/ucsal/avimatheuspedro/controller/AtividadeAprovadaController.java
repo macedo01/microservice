@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 public class AtividadeAprovadaController {
 	
 	@Autowired
-	private AtividadeAprovadaService service;
+	private AtividadeAprovadaService atividadeAprovadaService;
 
 	@Autowired
 	private AlunoService alunoService;
@@ -34,7 +34,7 @@ public class AtividadeAprovadaController {
 	
 	@GetMapping
 	public ResponseEntity<List<AtividadeAprovada>> listarAtividadesAprovadas(){
-		return new ResponseEntity<>(service.getAll(),HttpStatus.OK);
+		return new ResponseEntity<>(atividadeAprovadaService.getAll(),HttpStatus.OK);
 	}
 	
 	@PostMapping("/adicionar")
@@ -47,20 +47,20 @@ public class AtividadeAprovadaController {
 			atvAprovada.setAtivo(atividadeAprovada.isAtivo());
 			atvAprovada.setAtividadeComplementar(atividadeComplementar.get());
 		}catch (Exception e) {
-			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Ocorreu um erro adicionando a Atividade Complementar",HttpStatus.BAD_REQUEST);
 		}
 
-		return new ResponseEntity<>(service.adicionar(atvAprovada),HttpStatus.OK);
+		return new ResponseEntity<>(atividadeAprovadaService.adicionar(atvAprovada) + " A Atividade Complementar foi adicionada com sucesso !",HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/buscarPorAluno/{id}")
-	public ResponseEntity<Optional<AtividadeAprovada>> buscarPorAluno(@PathVariable long id) {
-		Optional<AtividadeAprovada> alunoPorId= service.buscarAlunoPorId(id);
+	public ResponseEntity buscarPorAluno(@PathVariable long id) {
+		Optional<AtividadeAprovada> alunoPorId = atividadeAprovadaService.buscarAlunoPorId(id);
 		if(!alunoPorId.isPresent()){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>("Não foi encontrado aluno com esse id",HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(alunoPorId, HttpStatus.OK);
+		return new ResponseEntity<>(alunoPorId + "O Aluno foi encontrado com sucesso !", HttpStatus.OK);
 	}
 	
 	

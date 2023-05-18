@@ -18,9 +18,9 @@ public class AlunoController {
 	@PostMapping("/adicionarAlunos")
 	public ResponseEntity addListaAluno(@RequestBody List<Aluno> alunos) {
 		if(alunos.size() < 3){
-			return new ResponseEntity( "Os Alunos não podem ser inseridos em quantidade menor do que 3...",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity("Os Alunos não podem ser inseridos em quantidade menor do que 3...", HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity(service.addListaAluno(alunos), HttpStatus.OK);
+		return new ResponseEntity(service.addListaAluno(alunos) + " Os Alunos Foram Adicionados Com Sucesso !", HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/removerAluno/{id}")

@@ -9,7 +9,4 @@ import br.ucsal.avimatheuspedro.model.AtividadeComplementar;
 import java.time.LocalDateTime;
 
 @Repository
-public interface AtividadeComplementarRepository  extends JpaRepository<AtividadeComplementar, Long> {
-
-
-}
+public interface AtividadeComplementarRepository  extends JpaRepository<AtividadeComplementar, Long> {}

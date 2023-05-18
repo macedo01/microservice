@@ -16,15 +16,15 @@ public class AtividadeComplementarController {
 
 
 	@PostMapping("/adicionarAtv")
-	public ResponseEntity<AtividadeComplementar> adicionar(@RequestBody AtividadeComplementar atividadeComplementar){
+	public ResponseEntity adicionar(@RequestBody AtividadeComplementar atividadeComplementar){
 		service.adicionar(atividadeComplementar);
-		return new ResponseEntity<>(atividadeComplementar, HttpStatus.OK);
+		return new ResponseEntity<>(atividadeComplementar + " As Atividades Foram Adicionados Com Sucesso !", HttpStatus.OK);
 	}
 	
 	@PutMapping("/atualizar/{id}")
-	public ResponseEntity<AtividadeComplementar> atualizar(@RequestBody AtividadeComplementar atividadeComplementar, @PathVariable long id) {
+	public ResponseEntity atualizar(@RequestBody AtividadeComplementar atividadeComplementar, @PathVariable long id) {
 		service.atualizar(atividadeComplementar,id);
-		return new ResponseEntity<>(atividadeComplementar, HttpStatus.OK);
+		return new ResponseEntity<>(atividadeComplementar + " As Atividades Foram Atualizadas Com Sucesso !", HttpStatus.OK);
 	}
 	
 	

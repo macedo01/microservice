@@ -18,9 +18,7 @@ public class AlunoService {
 	private AlunoRepository repository;
 
 	@Transactional
-	public List<Aluno> addListaAluno(List<Aluno> alunos) {
-		return repository.saveAll(alunos);
-	}
+	public List<Aluno> addListaAluno(List<Aluno> alunos) {return repository.saveAll(alunos);}
 
 	@Transactional
 	public void deleteAluno(long id) {
